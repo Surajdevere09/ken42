@@ -3,6 +3,8 @@ const path = require('path');
 const PORT = process.env.PORT || 3001;
 const connect=require("./src/configs/db")
 const {register,login} = require("./src/controller/auth.controller")
+const userController = require("./src/controller/user.controller")
+const infoController = require("./src/controller/info.controller")
 const cors =require("cors")
 const app = express();
 app.use(express.json())
@@ -10,8 +12,8 @@ app.use(cors())
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.post("/register",register);
-app.post("login"/login);
-
+app.post("/login",login)
+app.use("/users",userController)
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
