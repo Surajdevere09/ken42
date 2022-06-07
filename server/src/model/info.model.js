@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const infoSchema = new mongoose.Schema({
-
+id:{type:Number,required:true,unique:true},
     name:{type:mongoose.Schema.Types.ObjectId,ref:"user",required:true},
     rollNumber:{type:String,required:true},
     term:{type:String,required:true},
