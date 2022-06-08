@@ -12,6 +12,43 @@ router.get("", async (req, res)=>{
         res.status(500).send(e.message)
     }
 })
+router.get("/ongoing", async (req, res)=>{
+    let z = new Date().toISOString().slice(0, 10)
+    try {
+  const event = await Event.find().lean().exec();
+ //omgoing Event
+  let ans= event.filter((e)=> {
+    let x = new Date(e.startDate);
+    let y = new Date(e.endDate);
+    z = new Date(z);
+    return +x<=+z && +z<=+y
+    
+  })
+  res.status(200).send(ans)
+     } catch (e) {
+         console.log('e:', e)
+         res.status(500).send(e.message)
+     }
+ })
+ router.get("/upcomming", async (req, res)=>{
+    let z = new Date().toISOString().slice(0, 10)
+    try {
+  const event = await Event.find().lean().exec();
+ //omgoing Event
+  let ans= event.filter((e)=> {
+    let x = new Date(e.startDate);
+    let y = new Date(e.endDate);
+    z = new Date(z);
+    return +x>+z
+    
+  })
+  res.status(200).send(ans)
+     } catch (e) {
+         console.log('e:', e)
+         res.status(500).send(e.message)
+     }
+ })
+
 router.patch("/:id", async (req, res)=>{
     try {
   const event = await Event.findByIdAndUpdate(req.params.id,req.body,{
