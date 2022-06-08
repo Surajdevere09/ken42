@@ -12,6 +12,8 @@ const assignmentSchema = new mongoose.Schema(
           required: false,
         },
         subject_id:{type: mongoose.Schema.Types.ObjectId, ref:"subject",required:true},
+        startDate:{ type: String, required: true},
+        endDate:{ type: String, required: true},
        
       
       },

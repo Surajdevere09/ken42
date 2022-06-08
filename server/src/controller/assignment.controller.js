@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("", async (req, res)=>{
    try {
- const assignment= await Assignment.find().lean().exec();
+ const assignment= await Assignment.find().populate("subject_id").lean().exec();
  
  res.status(200).send(assignment)
     } catch (e) {
