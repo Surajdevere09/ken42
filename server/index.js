@@ -6,6 +6,12 @@ const {register,login} = require("./src/controller/auth.controller")
 const userController = require("./src/controller/user.controller")
 const infoController = require("./src/controller/info.controller")
 const eventController = require("./src/controller/event.controller")
+const acadController = require("./src/controller/acad.controller")
+
+const subjectController=require("./src/controller/subject.controller");
+const assignmentController=require("./src/controller/assignment.controller");
+
+
 const cors =require("cors")
 const app = express();
 app.use(express.json())
@@ -17,6 +23,9 @@ app.post("/login",login)
 app.use("/users",userController)
 app.use("/info",infoController)
 app.use("/event",eventController)
+app.use("/academics",acadController)
+app.use("/subject",subjectController);
+app.use("/assignment",assignmentController);
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
